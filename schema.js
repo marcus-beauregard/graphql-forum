@@ -2,9 +2,10 @@
 // Copyright (C) 2026 Marcus Beauregard
 
 const fs = require('fs');
+const path = require('path');
 const { UserInputError } = require('apollo-server');
 
-const typeDefs = fs.readFileSync('./schema.graphql', 'utf8');
+const typeDefs = fs.readFileSync(path.join(__dirname, 'schema.graphql'), 'utf8');
 
 const users = [
   { id: '1', name: 'Marcus' },
