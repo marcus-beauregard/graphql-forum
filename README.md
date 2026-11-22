@@ -16,7 +16,7 @@
 ```bash
 npm install
 npm start
-# graphql-forum ready at http://localhost:4000/
+# graphql-forum ready at http://localhost:4000/ by default. You can change the port by setting the `PORT` environment variable.
 ```
 
 Open ```http://localhost:4000/``` for Apollo Sandbox, or use curl:
