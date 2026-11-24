@@ -25,3 +25,34 @@ test('createPost rejects an unknown author and stores nothing', () => {
   );
   assert.equal(postCount(), before);
 });
+
+test('createPost rejects an empty or whitespace-only title and stores nothing', () => {
+  for (const title of ['', '   ', '\t\n']) {
+    const before = postCount();
+    assert.throws(
+      () => createPost(null, { title, body: 'Valid body' }),
+      (err) => err.name === 'UserInputError' && /title/i.test(err.message),
+    );
+    assert.equal(postCount(), before);
+  }
+});
+
+test('createPost rejects an empty or whitespace-only body and stores nothing', () => {
+  for (const body of ['', '   ', '\t\n']) {
+    const before = postCount();
+    assert.throws(
+      () => createPost(null, { title: 'Valid title', body }),
+      (err) => err.name === 'UserInputError' && /body/i.test(err.message),
+    );
+    assert.equal(postCount(), before);
+  }
+});
+
+test('createPost creates a post when title and body are non-empty', () => {
+  const before = postCount();
+  const post = createPost(null, { title: 'Valid title', body: 'Valid body', authorId: '2' });
+  assert.equal(post.title, 'Valid title');
+  assert.equal(post.body, 'Valid body');
+  assert.equal(post.authorId, '2');
+  assert.equal(postCount(), before + 1);
+});

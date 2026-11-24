@@ -49,7 +49,7 @@ type Mutation {
 npm test    # node --test
 ```
 
-Four tests cover ```createPost```; everything else is unprotected (#10).
+Six tests cover ```createPost```; everything else is unprotected (#10).
 
 ## Known gaps
 

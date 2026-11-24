@@ -33,6 +33,8 @@ const resolvers = {
     createPost: (_, { title, body, authorId = '1' }) => {
       const author = users.find((u) => u.id === authorId);
       if (!author) throw new UserInputError(`No user with id "${authorId}"`);
+      if (typeof title !== 'string' || !title.trim()) throw new UserInputError('Post title cannot be empty');
+      if (typeof body !== 'string' || !body.trim()) throw new UserInputError('Post body cannot be empty');
       const post = { id: String(posts.length + 1), title, body, authorId: author.id };
       posts.push(post);
       return post;
